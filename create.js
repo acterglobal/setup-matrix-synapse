@@ -23,7 +23,8 @@ async function run() {
         await exec.exec("pipx", ["install", "poetry"]);
         await exec.exec("pipx", ["list", "--verbose", "--include-injected"]);
         await exec.exec("poetry", ["install", "-vv", "--extras", "all"]);
-        // we need a specific twsited version
+        // we need a specific twsited version:
+        // https://github.com/element-hq/synapse/issues/17882
         await exec.exec("python", ["-m", "pip", "install","--force-reinstall", "-v", "Twisted==24.7.0"]);
     } 
     else {
@@ -35,6 +36,9 @@ async function run() {
         await exec.exec("env/bin/pip", ["install", "-q", "--upgrade", "pip"]);
         await exec.exec("env/bin/pip", ["install", "-q", "--upgrade", "setuptools"]);
         await exec.exec("env/bin/pip", ["install", "-q", "matrix-synapse"]);
+        // we need a specific twsited version:
+        // https://github.com/element-hq/synapse/issues/17882
+        await exec.exec("env/bin/pip", ["install","--force-reinstall", "-v", "Twisted==24.7.0"]);
     }  
     const customModules = core.getInput("customModules")
     if (customModules.length > 0) {
