@@ -20,7 +20,7 @@ async function run() {
         process.chdir("synapse");
         await exec.exec("python", ["-m", "pip", "install","pipx"]);
         await exec.exec("python", ["-m", "pipx", "ensurepath"]);
-        await exec.exec("pipx", ["install", "poetry==1.7.1"]);
+        await exec.exec("pipx", ["install", "poetry"]);
         await exec.exec("pipx", ["list", "--verbose", "--include-injected"]);
         await exec.exec("poetry", ["install", "-vv", "--extras", "all"]);
     } 
