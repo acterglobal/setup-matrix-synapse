@@ -23,6 +23,8 @@ async function run() {
         await exec.exec("pipx", ["install", "poetry"]);
         await exec.exec("pipx", ["list", "--verbose", "--include-injected"]);
         await exec.exec("poetry", ["install", "-vv", "--extras", "all"]);
+        // we need a specific twsited version
+        await exec.exec("python", ["-m", "pip", "install","--force-reinstall", "-v", "Twisted==24.7.0"]);
     } 
     else {
         // installing from pypi does not need the checkout.
